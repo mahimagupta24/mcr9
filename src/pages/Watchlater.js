@@ -1,9 +1,10 @@
 import { useContext, useEffect } from "react"
 import { VideosContext } from "../context/VideosContext"
 import { videos } from "../data"
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
 
 export default function WatchLater(){
-    const {watchLaterList,setWatchLaterList} = useContext(VideosContext)
+    const {watchLaterList,setWatchLaterList,handleWatchLater} = useContext(VideosContext)
 
     const watchLaterVideos = videos.filter(({_id})=>watchLaterList.includes(_id))
     // console.log(watchLaterList)
@@ -20,6 +21,12 @@ export default function WatchLater(){
         <img src={thumbnail}/>
         <p>{creator}</p>
         <p>{views}</p>
+        <div>
+              <WatchLaterIcon
+                className="watchlater"
+                onClick={() => handleWatchLater(_id)}
+              />
+            </div>
        </div>)}
     </div>
 }

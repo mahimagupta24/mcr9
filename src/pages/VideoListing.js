@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import { VideosContext } from "../context/VideosContext";
 export default function VideoListing() {
   const { videoCategory } = useParams();
-  const { watchLaterList, setWatchLaterList } = useContext(VideosContext);
+  const { watchLaterList, handleWatchLater } = useContext(VideosContext);
   const selectedVideos = videos.filter(
     ({ category }) => category === videoCategory
   );
@@ -14,22 +14,13 @@ export default function VideoListing() {
     localStorage.setItem("watchLaterList", JSON.stringify(watchLaterList));
   }, [watchLaterList]);
 
-  const handleWatchLater = (videoId) => {
-    setWatchLaterList((prevWatchLaterList) =>
-      prevWatchLaterList.includes(videoId)
-        ? prevWatchLaterList.filter((_id) => _id !== videoId)
-        : [...prevWatchLaterList, videoId]
-    );
-  };
-  
-//   const handleWatchLater = (videoId) => {
-//      setWatchLaterList(watchLaterList.includes(videoId)?watchLaterList.filter(({_id})=>_id!==videoId):[...watchLaterList,videoId])
-    // if (watchLaterList.includes(videoId)) {
-    //   setWatchLaterList(watchLaterList.filter(({ id }) => id !== videoId));
-    // } else {
-    //   setWatchLaterList([...watchLaterList, videoId]);
-    // }
-  
+  //   const handleWatchLater = (videoId) => {
+  //      setWatchLaterList(watchLaterList.includes(videoId)?watchLaterList.filter(({_id})=>_id!==videoId):[...watchLaterList,videoId])
+  // if (watchLaterList.includes(videoId)) {
+  //   setWatchLaterList(watchLaterList.filter(({ id }) => id !== videoId));
+  // } else {
+  //   setWatchLaterList([...watchLaterList, videoId]);
+  // }
 
   return (
     <div>

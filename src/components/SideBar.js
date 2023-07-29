@@ -11,17 +11,17 @@ export default function SideBar() {
           <i className="fa fa-home"></i>Home
         </span>
       </div>
-      <div className="side-bar-content">
+      <div className="side-bar-content" onClick={()=>navigate("/explore")}>
         <span>
           <i className="fa fa-compass"></i>Explore
         </span>
       </div>
     
-      <div className="side-bar-content">
-        <WatchLaterIcon style={{ fontSize: "1rem" }} onClick={()=>navigate("/watchlater")}/>
+      <div className="side-bar-content" onClick={()=>navigate("/watchlater")}>
+        <WatchLaterIcon style={{ fontSize: "1rem" }} />
     Watch later
       </div>
-      <div className="side-bar-content">
+      <div className="side-bar-content" onClick={()=>navigate("/playlist")}>
         <PlaylistAddIcon style={{ fontSize: "1.3rem" }} />
         Playlists
       </div>
