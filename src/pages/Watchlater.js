@@ -4,13 +4,13 @@ import { videos } from "../data";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 
 export default function WatchLater() {
-  const { watchLaterList, setWatchLaterList, handleWatchLater } =
+  const { watchLaterList, setWatchLaterList, handleWatchLater ,isWatchLaterPresent,addWatchLater,removeWatchLater} =
     useContext(VideosContext);
 
   const watchLaterVideos = videos.filter(({ _id }) =>
     watchLaterList.includes(_id)
   );
-  // console.log(watchLaterList)
+  console.log(watchLaterList)
   console.log(watchLaterVideos);
 
   useEffect(() => {
@@ -21,17 +21,23 @@ export default function WatchLater() {
   }, []);
   return (
     <div className="main-container">
-      {watchLaterVideos.map(({ _id, thumbnail, views, creator }) => (
-        <div key={_id}>
+      {watchLaterVideos.map((selectedVideo) =>{ 
+        const { _id, thumbnail, views, creator } = selectedVideo
+        return <div key={_id}>
           <img src={thumbnail} />
           <p>{creator}</p>
           <p>{views}</p>
-          <WatchLaterIcon
+          {isWatchLaterPresent(selectedVideo._id) ? (
+                  <WatchLaterIcon className="watchlater" onClick={()=>removeWatchLater(selectedVideo._id)} />
+                ) : (
+                  <WatchLaterIcon className="add-watchlater"onClick={()=>addWatchLater(selectedVideo._id)} />
+                )}
+          {/* <WatchLaterIcon
             className="watchlater"
             onClick={() => handleWatchLater(_id)}
-          />
+          /> */}
         </div>
-      ))}
+      })}
     </div>
   );
 }

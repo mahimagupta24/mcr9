@@ -58,14 +58,23 @@ code {
   width:300px
   /* margin-bottom: 12px; */
 }
-.watchlater{
+ .watchlater{
   font-size: 1rem;
   position: absolute;
   top: 0;
   background-color: white;
-  color:aqua
+  color:aqua;
+  cursor: pointer;
   /* margin-left: 1px; */
-}
+ }
+ .add-watchlater{
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  background-color: white;
+  cursor: pointer;
+  /* margin-left: 1px; */
+ }
 .input{
   display: flex;
   justify-content: center;
@@ -77,3 +86,52 @@ input{
   /* width:50%; */
   text-align: center;
 }
+/* video.js */
+.notes-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.modal-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 0%;
+  top: 70%;
+}
+.edit-del-btn{
+  display: flex;
+  gap:4px
+}
+
+.modal-container input {
+  width: 80%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal-container button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin:4px
+
+}
+
+ /* .watch-later-btn {
+  color: grey;
+}
+
+/* Button style when video is added to watch later list */
+/* .added-to-watch-later-btn {
+  color: blue;
+}  */

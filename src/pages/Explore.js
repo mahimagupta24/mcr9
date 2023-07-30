@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Explore() {
     const navigate = useNavigate()
-  const { handleWatchLater } = useContext(VideosContext);
+  const { isWatchLaterPresent,addWatchLater,removeWatchLater } = useContext(VideosContext);
   const [searchText, setSearchText] = useState("");
 const[filteredVideos,setFilteredVideos] = useState(videos)
 
@@ -26,8 +26,8 @@ const[filteredVideos,setFilteredVideos] = useState(videos)
       </div>
       <div className="category-main">
         {filteredVideos.map(({ _id, thumbnail, title, category, views }) => (
-          <div className="video-card" key={_id} onClick={()=>navigate(`/video/${_id}`)}>
-            <img src={thumbnail} alt="category" />
+          <div className="video-card" key={_id} >
+            <img onClick={()=>navigate(`/video/${_id}`)}src={thumbnail} alt="category" />
             <b>
               <p className="title">{title}</p>
             </b>
@@ -38,10 +38,16 @@ const[filteredVideos,setFilteredVideos] = useState(videos)
               <span>{views} views</span>
             </p>
             <div>
-              <WatchLaterIcon
-                className="watchlater"
-                onClick={() => handleWatchLater(_id)}
-              />
+            {isWatchLaterPresent(_id) ? (
+                  <WatchLaterIcon className="watchlater" onClick={()=>{
+                    removeWatchLater(_id)
+                  console.log("remove")
+                  }
+                   } />
+                ) : (
+                  <WatchLaterIcon className="add-watchlater"onClick={()=>addWatchLater(_id)} />
+                )}
+              
             </div>
           </div>
         ))}

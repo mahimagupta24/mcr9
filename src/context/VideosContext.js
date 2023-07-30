@@ -16,6 +16,16 @@ export default function VideosProvider({ children }) {
     );
   };
 
+  const isWatchLaterPresent = (videoId) => watchLaterList?.includes(videoId);
+  // console.log
+
+  const addWatchLater = (videoId) =>
+    setWatchLaterList((watchLaterList) => [...watchLaterList, videoId]);
+
+  const removeWatchLater = (videoId) =>
+    setWatchLaterList((watchLaterList) =>
+      watchLaterList.filter((watchLater) => watchLater !== videoId)
+    );
   // useEffect(() => {
   //   const storedPlaylists = JSON.parse(localStorage.getItem("playlists"));
   //   setPlaylists(storedPlaylists);
@@ -42,9 +52,11 @@ export default function VideosProvider({ children }) {
     setPlaylists((prevPlaylists) => [...prevPlaylists, newPlaylist]);
   };
 
-  const deletePlaylist =(playlistName)=>{
-    setPlaylists((playlists)=>playlists.filter(({name})=>name!==playlistName))
-  }
+  const deletePlaylist = (playlistName) => {
+    setPlaylists((playlists) =>
+      playlists.filter(({ name }) => name !== playlistName)
+    );
+  };
   return (
     <VideosContext.Provider
       value={{
@@ -58,7 +70,10 @@ export default function VideosProvider({ children }) {
         showPlaylistModel,
         setShowPlaylistModel,
         createPlaylist,
-        deletePlaylist
+        deletePlaylist,
+        isWatchLaterPresent,
+        addWatchLater,
+        removeWatchLater,
       }}
     >
       {children}
