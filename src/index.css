@@ -103,6 +103,34 @@ input{
   left: 0%;
   top: 70%;
 }
+
+.notes-main-p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.modal-container-p {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 0%;
+  /* top: 70%; */
+}
+
+.modal-container-p button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin:4px
+
+}
 .edit-del-btn{
   display: flex;
   gap:4px
@@ -125,6 +153,9 @@ input{
   cursor: pointer;
   margin:4px
 
+}
+.cancel-icon{
+  display: flex;
 }
 
  /* .watch-later-btn {

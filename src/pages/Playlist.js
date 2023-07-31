@@ -1,12 +1,8 @@
-import { useContext,useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { VideosContext } from "../context/VideosContext";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 
-
-
 export default function Playlist() {
-
-    
   const {
     playlists,
     setShowPlaylistModel,
@@ -14,14 +10,15 @@ export default function Playlist() {
     handleDescription,
     handleName,
     createPlaylist,
-    setPlaylists,deletePlaylist
+    setPlaylists,
+    deletePlaylist,
   } = useContext(VideosContext);
 
   useEffect(() => {
-    const storedPlaylists = localStorage.getItem("playlists")
-    console.log("abc",storedPlaylists)
-    if(storedPlaylists){
-    setPlaylists(JSON.parse(storedPlaylists))
+    const storedPlaylists = localStorage.getItem("playlists");
+    console.log("abc", storedPlaylists);
+    if (storedPlaylists) {
+      setPlaylists(JSON.parse(storedPlaylists));
     }
   }, []);
 
@@ -30,14 +27,14 @@ export default function Playlist() {
     setShowPlaylistModel(false);
   };
 
-  const handleDeletePlaylist =(playlistName)=>{
-     deletePlaylist(playlistName)
-    setShowPlaylistModel(false)
-  }
+  const handleDeletePlaylist = (playlistName) => {
+    deletePlaylist(playlistName);
+    setShowPlaylistModel(false);
+  };
 
   return (
     <div>
-        <h1>Playlist</h1>
+      <h1>Playlist</h1>
       <div>
         {" "}
         <PlaylistAddIcon
@@ -46,21 +43,24 @@ export default function Playlist() {
         />
       </div>
       {showPlaylistModel && (
-        <div>
+        <div className="notes-main-p">
+          <div className="modal-container-p">
           <label>Name</label>
           <input type="text" onChange={handleName} />
           <label>Description</label>
           <input type="text" onChange={handleDescription} />
           <button onClick={handleCreatePlaylist}>Create</button>
-         
+        </div>
         </div>
       )}
-      {playlists.map(({ name, description, imageURL }) => (
+      {playlists.map(({ playListName, playListDescription, imageURL }) => (
         <div>
-            <img src={imageURL}/>
-          <p>{name}</p>
-          <p>{description}</p>
-          <button onClick ={()=>handleDeletePlaylist(name)}>Delete</button>
+          <img src={imageURL} />
+          <p>{playListName}</p>
+          <p>{playListDescription}</p>
+          <button onClick={() => handleDeletePlaylist(playListName)}>
+            Delete
+          </button>
         </div>
       ))}
     </div>

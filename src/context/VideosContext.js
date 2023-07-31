@@ -8,13 +8,13 @@ export default function VideosProvider({ children }) {
   const [description, setDescription] = useState("");
   const [showPlaylistModel, setShowPlaylistModel] = useState(false);
 
-  const handleWatchLater = (videoId) => {
-    setWatchLaterList((prevWatchLaterList) =>
-      prevWatchLaterList.includes(videoId)
-        ? prevWatchLaterList.filter((_id) => _id !== videoId)
-        : [...prevWatchLaterList, videoId]
-    );
-  };
+  // const handleWatchLater = (videoId) => {
+  //   setWatchLaterList((prevWatchLaterList) =>
+  //     prevWatchLaterList.includes(videoId)
+  //       ? prevWatchLaterList.filter((_id) => _id !== videoId)
+  //       : [...prevWatchLaterList, videoId]
+  //   );
+  // };
 
   const isWatchLaterPresent = (videoId) => watchLaterList?.includes(videoId);
   // console.log
@@ -44,9 +44,10 @@ export default function VideosProvider({ children }) {
   };
   const createPlaylist = () => {
     const newPlaylist = {
-      name: name,
-      description: description,
-      imageURL: "https://picsum.photos/200/300",
+      id:new Date(),
+      playListName: name,
+      playListDescription: description,
+       imageURL: "https://picsum.photos/300/200",
       videos: [],
     };
     setPlaylists((prevPlaylists) => [...prevPlaylists, newPlaylist]);
@@ -54,7 +55,7 @@ export default function VideosProvider({ children }) {
 
   const deletePlaylist = (playlistName) => {
     setPlaylists((playlists) =>
-      playlists.filter(({ name }) => name !== playlistName)
+      playlists.filter(({ playListName }) => playListName !== playlistName)
     );
   };
   return (
@@ -62,7 +63,7 @@ export default function VideosProvider({ children }) {
       value={{
         watchLaterList,
         setWatchLaterList,
-        handleWatchLater,
+        // handleWatchLater,
         playlists,
         setPlaylists,
         handleName,
@@ -74,6 +75,7 @@ export default function VideosProvider({ children }) {
         isWatchLaterPresent,
         addWatchLater,
         removeWatchLater,
+        name
       }}
     >
       {children}
