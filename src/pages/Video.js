@@ -4,7 +4,7 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import CloseIcon from "@mui/icons-material/Close";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { VideosContext } from "../context/VideosContext";
 
 export default function Video() {
@@ -12,7 +12,9 @@ export default function Video() {
   const [editNoteId, setEditNoteId] = useState();
   const videoDetails = videos.find(({ _id }) => _id === Number(videoId));
   const { thumbnail, src, title } = videoDetails;
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(
+    JSON.parse(localStorage.getItem("notes")) || []
+  );
   const [textNote, setTextNote] = useState("");
   const [showModal, setShowModal] = useState(false);
   const {
@@ -24,6 +26,7 @@ export default function Video() {
     handleDescription,
     setPlaylists,
   } = useContext(VideosContext);
+  
   console.log(playlists);
   //   const addNotes = ()=>{
   //     setShowModal(true)
@@ -100,10 +103,9 @@ export default function Video() {
     );
   };
 
-  // useEffect(() => {
-  //   const storedNotes = localStorage.getItem(`video_${videoId}_notes`);
-  //   setNotes(storedNotes);
-  // }, []);
+  useEffect(() => {
+     localStorage.setItem("notes",JSON.stringify(notes));
+  }, [notes]);
   return (
     <div>
       {/* <img src={thumbnail} alt="video" /> */}
@@ -119,7 +121,7 @@ export default function Video() {
       {showPlaylistModel && (
         <div className="notes-main-p">
           <div className="modal-container-p">
-            {playlists.map((playlist) => (
+            {playlists?.map((playlist) => (
               <div key={playlist.id}>
                 <p>
                   <b>{playlist.playListName}</b>

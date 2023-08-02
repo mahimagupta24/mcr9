@@ -14,13 +14,13 @@ export default function Playlist() {
     deletePlaylist,
   } = useContext(VideosContext);
 
-  useEffect(() => {
-    const storedPlaylists = localStorage.getItem("playlists");
-    console.log("abc", storedPlaylists);
-    if (storedPlaylists) {
-      setPlaylists(JSON.parse(storedPlaylists));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedPlaylists = localStorage.getItem("playlists");
+  //   console.log("abc", storedPlaylists);
+  //   if (storedPlaylists) {
+  //     setPlaylists(JSON.parse(storedPlaylists));
+  //   }
+  // }, []);
 
   const handleCreatePlaylist = () => {
     createPlaylist();

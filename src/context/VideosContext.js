@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 export const VideosContext = createContext();
 export default function VideosProvider({ children }) {
-  const [watchLaterList, setWatchLaterList] = useState([]);
+  const [watchLaterList, setWatchLaterList] = useState(JSON.parse(localStorage.getItem("watchLaterList"))||[]);
   const [playlists, setPlaylists] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -32,9 +32,10 @@ export default function VideosProvider({ children }) {
   // }, []);
 
   useEffect(() => {
-    localStorage.setItem("playlists", JSON.stringify(playlists));
-  }, [playlists]);
-
+    localStorage.setItem("watchLaterList", JSON.stringify(watchLaterList));
+  }, [watchLaterList]);
+  
+ 
   const handleName = (e) => {
     setName(e.target.value);
   };

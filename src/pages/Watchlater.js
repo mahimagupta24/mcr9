@@ -4,7 +4,7 @@ import { videos } from "../data";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 
 export default function WatchLater() {
-  const { watchLaterList, setWatchLaterList, handleWatchLater ,isWatchLaterPresent,addWatchLater,removeWatchLater} =
+  const { watchLaterList, setWatchLaterList ,isWatchLaterPresent,addWatchLater,removeWatchLater} =
     useContext(VideosContext);
 
   const watchLaterVideos = videos.filter(({ _id }) =>
@@ -13,12 +13,12 @@ export default function WatchLater() {
   console.log(watchLaterList)
   console.log(watchLaterVideos);
 
-  useEffect(() => {
-    const storeWatchedLaterList = localStorage.getItem("watchLaterList");
-    if (storeWatchedLaterList) {
-      setWatchLaterList(JSON.parse(storeWatchedLaterList));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storeWatchedLaterList = localStorage.getItem("watchLaterList");
+  //   if (storeWatchedLaterList) {
+  //     setWatchLaterList(JSON.parse(storeWatchedLaterList));
+  //   }
+  // }, []);
   return (
     <div className="main-container">
       {watchLaterVideos.map((selectedVideo) =>{ 
